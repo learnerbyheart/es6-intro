@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/black.css" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css" />
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.type = "text/css";
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? "css/print/pdf.css"
+        : "css/print/paper.css";
+      document.getElementsByTagName("head")[0].appendChild(link);
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section><h1>ECMAScript 6</h1></section>
+        <section>
+          <h2>Agenda</h2>
+          <ol>
+            <li>Motivation</li>
+            <li>Katas</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2><a href="http://es6katas.org/">Katas</a></h2>
+          <ul>
+            <li>Arrow function</li>
+            <li>Class</li>
+            <li>Destructuring</li>
+            <li>Spread Operator</li>
+            <li>Object literal</li>
+            <li>Promise</li>
+            <li>Modules</li>
+            <li>Default Parameters</li>
+            <li>Template string</li>
+            <li>...mehr</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Arrow function</h3>
+          <pre><code class="hljs javascript" data-trim>
+const addiere = (zahl1, zahl2) => {
+  return zahl1 + zahl2;
+}
+const subtrahiere = (zahl1, zahl2) => zahl1 - zahl2;
+const helloWorld = string => console.log("hello " + string);
+					</code></pre>
+        </section>
+
+        <section>
+          <h3>Class</h3>
+          <pre><code class="hljs javascript" data-trim>
+class Anwendungsmanager extends Mitarbeiter {
+  constructor(name) { super(name); }
+
+  static behebeIncident() { console.log("Löse HPSM Incident"); }
+
+  get gruppe() { return this.gruppe; }
+
+  set gruppe(gruppenName) { this.gruppe = gruppenName; }
+}
+const lucas = new Anwendungsmanager("Lucas");
+lucas.gruppe = "DV";
+assert.equals(lucas.gruppe, "DV");
+					</code></pre>
+        </section>
+
+        <section>
+          <h3>Destructuring</h3>
+          <pre><code class="hljs javascript" data-trim>
+const anwendungsManager = {
+  name: "Lucas",
+  gruppe: "DV",
+  raum: "H215"
+}
+const { name, gruppe } = anwendungsManager;
+const { raum, ...rest } = anwendungsManager;
+					</code></pre>
+        </section>
+
+        <section>
+          <h3>Spread Operator</h3>
+          <pre><code class="hljs javascript" data-trim>
+const personalien = {
+  name: "Lucas",
+  nachname: "Pradel"
+};
+const aenderung = {
+  nachname: "Hirsch",
+  alter: 30
+};
+const lucas = {
+  ...personalien,
+  aenderung
+};
+assert.equals(lucas, {name: "Lucas", nachname: "Hirsch", alter: 30});
+					</code></pre>
+        </section>
+
+        <section>
+          <h3>Object literal</h3>
+          <pre><code class="hljs javascript" data-trim>
+const name = "Lucas";
+const alter = 30;
+const hallo = () => console.log("Hallo");
+
+const lucas = {
+  name,
+  alter,
+  hallo
+}
+					</code></pre>
+        </section>
+
+        <section>
+          <h3>Promise</h3>
+          <pre><code class="hljs javascript" data-trim>
+var istMamaGluecklich = false;
+// Promise
+var willIGetNewPhone = new Promise((resolve, reject) => {
+        if (istMamaGluecklich) {
+            resolve("iPhone"); // fulfilled
+        } else {
+            var reason = new Error('Mama ist nicht gut drauf');
+            reject(reason); // reject
+        }
+    }
+);
+willIGetNewPhone
+  .then(handy => kaufBeiAmazon(handy))
+  .catch(error => kaufeMamaBlumen());
+					</code></pre>
+        </section>
+
+        <section>
+          <h3>Modules</h3>
+          <pre><code class="hljs javascript" data-trim>
+import assert from "assert";
+import { equals, deepEquals } from 'assert'
+					</code></pre>
+        </section>
+
+        <section>
+          <h3>Default Parameters</h3>
+          <pre><code class="hljs javascript" data-trim>
+function helloWorld(string = "world") {
+  console.log("Hello " + string);
+}
+					</code></pre>
+        </section>
+
+        <section>
+          <h3>Template Strings</h3>
+          <pre><code class="hljs javascript" data-trim>
+const adresse = ´Lucas Pradel
+Raiffeisenplatz 2
+65189 Wiesbaden´;
+
+const name = "Karsten";
+console.log(`Hallo ${name}`); // Hallo Karsten
+console.log(`1 + 1 ist ${1 + 1}`); // 1 + 1 ist 2
+					</code></pre>
+        </section>
+
+        <section><h3>Promises</h3></section>
+        <section><h3>Promise</h3></section>
+      </div>
+    </div>
+
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        dependencies: [
+          { src: "plugin/markdown/marked.js" },
+          { src: "plugin/markdown/markdown.js" },
+          { src: "plugin/notes/notes.js", async: true },
+          { src: "plugin/highlight/highlight.js", async: true }
+        ]
+      });
+    </script>
+  </body>
+</html>
